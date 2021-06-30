@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Demo AJAX </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="http://localhost:8080/AJAX.js"></script>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+
+    <style>
+        #primerBoton{
+            margin-top: 10px;
+        }
+    </style>
+    
+    <button id="boton">AJAX</button>
+    <button id="boton2">TODAS</button>
+
+   
+    <div id="primerBoton">
+        <button id="boton3" >VER AMIGOS </button>
+    </div>
+    <ul id="lista">
+    </ul>
+    <h2>VER AMIGOS</h2>
+
+    <hr>
+    <input id="input"></input>  
+    <button id="search">BUSCAR</button>  
+    <span id="amigo"></span>
+
+    <hr>
+    <input id="inputDelete"></input>  
+    <button id="delete">DELETE</button>
+    <span id="succss"></span>
+    <script src="AJAX.js"></script>
+
+    <div id="respuesta">
+    </div>
+
+
+    <script type="text/javascript">
+    var index = 1;
+
+    $("#boton").click(function(){
+            
+            $.get("http://jsonplaceholder.typicode.com/photos/" + index, function (data){
+            var img = document.createElement("img");
+            var title = document.createElement("h1");
+            title.innerHTML = data.title;
+            img.src = data.url;
+            $("#respuesta").append(title);
+            $("#respuesta").append(img);
+            index ++;
+        })
+        
+    })
+
+    $("#boton2").click(function(){
+        $.get("http://jsonplaceholder.typicode.com/photos/", function (data){
+            console.log("click");
+        })
+    })
+
+
+    //var boton = document.getElementById("boton");
+    //boton.addEventListener("click",OprimirBoton);
+
+    //function OprimirBoton(){
+        //$.get("http://jsonplaceholder.typicode.com/photos/2", function (data){
+           // console.log(data);
+        //})
+    //}
+    </script>
+    
+</body>
+</html>
